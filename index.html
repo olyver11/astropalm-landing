@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AstroPalm — Your palm holds the map. We help you read it.</title>
+<title>AstraPalm — Your palm holds the map. We help you read it.</title>
 <meta name="description" content="A daily personal oracle powered by the lines you were born with. Daily palm readings, personal insights, and self-understanding.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -224,6 +224,32 @@ a:focus-visible, button:focus-visible, input:focus-visible {
 @keyframes labelIn {
   from { opacity:0; transform:translateY(6px); }
   to { opacity:1; transform:translateY(0); }
+}
+
+/* Orbiting particles */
+.palm-particle {
+  position:absolute; top:50%; left:50%;
+  width:var(--size); height:var(--size);
+  background:var(--gold-primary); border-radius:50%;
+  opacity:var(--opacity);
+  box-shadow:0 0 6px var(--gold-primary);
+  animation:orbit 8s linear infinite;
+  animation-delay:var(--delay);
+  pointer-events:none;
+}
+@keyframes orbit {
+  from { transform:rotate(0deg) translateX(var(--radius)) rotate(0deg); }
+  to { transform:rotate(360deg) translateX(var(--radius)) rotate(-360deg); }
+}
+
+/* Line draw-in animation */
+.palm-line-anim {
+  stroke-dasharray:400;
+  stroke-dashoffset:400;
+  animation:lineReveal 1.8s ease-out forwards;
+}
+@keyframes lineReveal {
+  to { stroke-dashoffset:0; }
 }
 
 /* ===== SOCIAL PROOF BAR ===== */
@@ -667,7 +693,7 @@ a:focus-visible, button:focus-visible, input:focus-visible {
       <path d="M16 20c1 0 2.5-3.5 2.5-8S17 4 16 4"/>
       <path d="M6 8h12M5.5 12h13M6 16h12"/>
     </svg>
-    <span class="nav-wordmark">ASTROPALM</span>
+    <span class="nav-wordmark">ASTRAPALM</span>
   </div>
   <div class="nav-center">
     <a href="#how-it-works">How it works</a>
@@ -683,7 +709,7 @@ a:focus-visible, button:focus-visible, input:focus-visible {
     <div class="hero-left">
       <div class="hero-eyebrow">Daily Palm Intelligence</div>
       <h1 class="hero-headline">Your palm<br>has been trying<br>to tell you<br><em>something.</em></h1>
-      <p class="hero-sub">AstroPalm reads the lines you were born with and turns them into a daily ritual of insight, clarity, and self-understanding. Not a horoscope. Not a personality quiz. Something older and more personal.</p>
+      <p class="hero-sub">AstraPalm reads the lines you were born with and turns them into a daily ritual of insight, clarity, and self-understanding. Not a horoscope. Not a personality quiz. Something older and more personal.</p>
       <div class="hero-buttons">
         <a href="#final-cta" class="btn-primary">Begin Your Reading</a>
         <a href="#how-it-works" class="btn-secondary">See How It Works</a>
@@ -693,27 +719,134 @@ a:focus-visible, button:focus-visible, input:focus-visible {
     <div class="hero-right">
       <div class="palm-container">
         <div class="palm-circle"></div>
-        <svg class="palm-svg" width="200" height="260" viewBox="0 0 200 260" fill="none">
-          <path d="M60 250 C55 220 40 180 38 150 C36 130 38 110 42 100 C30 95 22 80 24 65 C26 50 35 42 45 42 C42 30 48 18 58 15 C68 12 78 18 82 28 C85 15 95 5 108 5 C121 5 130 18 130 32 C140 20 155 18 164 28 C173 38 172 55 165 68 C170 72 174 82 172 95 C170 108 165 115 162 120 C160 130 162 160 158 190 C155 210 148 235 140 250" stroke="var(--gold-primary)" stroke-width="1.2" opacity="0.7"/>
-          <!-- Heart line (rose) -->
-          <path d="M45 95 C65 82 90 78 115 76 C135 75 150 78 162 88" stroke="var(--rose-accent)" stroke-width="1.3" opacity="0.8" fill="none"/>
-          <!-- Head line (teal) -->
-          <path d="M48 108 C68 105 88 108 108 115 C128 122 142 118 155 110" stroke="var(--teal-accent)" stroke-width="1.3" opacity="0.8" fill="none"/>
-          <!-- Life line (gold) -->
-          <path d="M80 85 C70 105 60 130 58 165 C57 185 60 210 65 235" stroke="var(--gold-light)" stroke-width="1.3" opacity="0.8" fill="none"/>
-          <!-- Fate line (violet) -->
-          <path d="M100 240 C98 210 96 180 95 150 C94 130 96 110 100 90" stroke="var(--violet-primary)" stroke-width="1.3" opacity="0.6" fill="none"/>
+        <!-- Orbiting particles -->
+        <div class="palm-particle" style="--angle:0deg;--delay:0s;--radius:170px;--size:2px;--opacity:0.5"></div>
+        <div class="palm-particle" style="--angle:72deg;--delay:-1.5s;--radius:175px;--size:3px;--opacity:0.7"></div>
+        <div class="palm-particle" style="--angle:144deg;--delay:-3s;--radius:165px;--size:2px;--opacity:0.4"></div>
+        <div class="palm-particle" style="--angle:216deg;--delay:-4.5s;--radius:180px;--size:2.5px;--opacity:0.6"></div>
+        <div class="palm-particle" style="--angle:288deg;--delay:-6s;--radius:172px;--size:1.5px;--opacity:0.5"></div>
+        <svg class="palm-svg" width="240" height="320" viewBox="0 0 240 320" fill="none">
+          <defs>
+            <filter id="lineGlow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="3" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="6" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <linearGradient id="palmGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#C9A84C" stop-opacity="0.9"/>
+              <stop offset="100%" stop-color="#8B6914" stop-opacity="0.5"/>
+            </linearGradient>
+            <radialGradient id="palmCenter" cx="50%" cy="45%">
+              <stop offset="0%" stop-color="#C9A84C" stop-opacity="0.06"/>
+              <stop offset="100%" stop-color="#C9A84C" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+
+          <!-- Inner palm glow -->
+          <ellipse cx="115" cy="175" rx="55" ry="65" fill="url(#palmCenter)"/>
+
+          <!-- Full hand outline — detailed with all 5 fingers -->
+          <path d="
+            M72 305
+            C68 280 55 240 48 200
+            C42 170 38 145 40 128
+            C36 126 28 118 24 105
+            C20 90 22 72 30 62
+            C38 52 48 56 52 65
+            C50 50 44 32 48 20
+            C52 8 64 2 74 8
+            C82 14 84 30 82 45
+            C86 28 90 10 100 5
+            C112 -2 122 12 122 30
+            C122 42 120 55 118 62
+            C126 42 132 18 144 14
+            C156 8 164 24 162 42
+            C160 56 156 70 152 80
+            C162 68 170 50 180 48
+            C192 44 196 62 192 78
+            C188 92 180 105 174 115
+            C178 125 176 130 174 140
+            C172 160 174 195 170 230
+            C167 260 158 285 148 305
+          " stroke="url(#palmGrad)" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+
+          <!-- Thumb -->
+          <path d="M40 128 C30 138 18 152 16 165 C14 180 22 190 34 188 C44 186 50 175 52 165 C54 155 50 200 48 200" stroke="url(#palmGrad)" stroke-width="1.1" stroke-linecap="round" fill="none" opacity="0.8"/>
+
+          <!-- Finger joints / knuckle creases -->
+          <path d="M54 48 C60 46 68 46 78 48" stroke="#C9A84C" stroke-width="0.6" opacity="0.25" fill="none"/>
+          <path d="M92 22 C100 18 110 18 118 24" stroke="#C9A84C" stroke-width="0.6" opacity="0.25" fill="none"/>
+          <path d="M134 32 C142 28 152 28 160 34" stroke="#C9A84C" stroke-width="0.6" opacity="0.25" fill="none"/>
+          <path d="M168 60 C175 56 184 56 190 62" stroke="#C9A84C" stroke-width="0.6" opacity="0.25" fill="none"/>
+
+          <!-- Finger segment lines -->
+          <path d="M60 30 C66 28 74 28 80 32" stroke="#C9A84C" stroke-width="0.4" opacity="0.18" fill="none"/>
+          <path d="M98 10 C104 7 112 8 118 12" stroke="#C9A84C" stroke-width="0.4" opacity="0.18" fill="none"/>
+          <path d="M140 20 C147 17 155 18 160 22" stroke="#C9A84C" stroke-width="0.4" opacity="0.18" fill="none"/>
+          <path d="M174 48 C178 46 184 46 188 50" stroke="#C9A84C" stroke-width="0.4" opacity="0.18" fill="none"/>
+
+          <!-- Wrist lines -->
+          <path d="M72 290 C90 286 120 284 148 290" stroke="#C9A84C" stroke-width="0.7" opacity="0.2" fill="none"/>
+          <path d="M76 298 C94 294 124 293 145 298" stroke="#C9A84C" stroke-width="0.5" opacity="0.15" fill="none"/>
+
+          <!-- Mount areas — very subtle radial marks -->
+          <circle cx="80" cy="92" r="12" stroke="#C9A84C" stroke-width="0.3" opacity="0.08" fill="none"/>
+          <circle cx="110" cy="85" r="14" stroke="#C9A84C" stroke-width="0.3" opacity="0.08" fill="none"/>
+          <circle cx="145" cy="90" r="13" stroke="#C9A84C" stroke-width="0.3" opacity="0.08" fill="none"/>
+          <circle cx="170" cy="110" r="11" stroke="#C9A84C" stroke-width="0.3" opacity="0.08" fill="none"/>
+
+          <!-- Minor surface lines -->
+          <path d="M60 160 C65 155 70 158 75 155" stroke="#C9A84C" stroke-width="0.3" opacity="0.15" fill="none"/>
+          <path d="M55 180 C62 176 68 178" stroke="#C9A84C" stroke-width="0.3" opacity="0.12" fill="none"/>
+          <path d="M130 150 C136 146 142 148 148 144" stroke="#C9A84C" stroke-width="0.3" opacity="0.12" fill="none"/>
+          <path d="M140 170 C148 166 155 168" stroke="#C9A84C" stroke-width="0.3" opacity="0.1" fill="none"/>
+          <path d="M90 200 C95 196 102 198" stroke="#C9A84C" stroke-width="0.3" opacity="0.1" fill="none"/>
+
+          <!-- ===== MAJOR PALM LINES (glowing, color-coded) ===== -->
+
+          <!-- Heart line (rose) — sweeping curve across upper palm -->
+          <path class="palm-line-anim" d="M50 120 C60 108 75 100 90 98 C108 96 128 97 148 100 C158 102 166 108 174 118" stroke="var(--rose-accent)" stroke-width="2" opacity="0.85" fill="none" filter="url(#lineGlow)" stroke-linecap="round"/>
+          <!-- Heart line subtle echo -->
+          <path d="M50 120 C60 108 75 100 90 98 C108 96 128 97 148 100 C158 102 166 108 174 118" stroke="var(--rose-accent)" stroke-width="6" opacity="0.08" fill="none" filter="url(#softGlow)"/>
+
+          <!-- Head line (teal) — crosses mid-palm -->
+          <path class="palm-line-anim" d="M52 138 C68 132 85 130 105 134 C125 138 142 142 158 138 C165 136 170 132 174 128" stroke="var(--teal-accent)" stroke-width="2" opacity="0.85" fill="none" filter="url(#lineGlow)" stroke-linecap="round" style="animation-delay:0.3s"/>
+          <path d="M52 138 C68 132 85 130 105 134 C125 138 142 142 158 138 C165 136 170 132 174 128" stroke="var(--teal-accent)" stroke-width="6" opacity="0.08" fill="none" filter="url(#softGlow)"/>
+
+          <!-- Life line (gold) — sweeping arc down the palm -->
+          <path class="palm-line-anim" d="M82 95 C74 110 64 135 58 165 C52 195 54 230 60 260 C63 275 68 285 72 292" stroke="var(--gold-light)" stroke-width="2" opacity="0.85" fill="none" filter="url(#lineGlow)" stroke-linecap="round" style="animation-delay:0.6s"/>
+          <path d="M82 95 C74 110 64 135 58 165 C52 195 54 230 60 260 C63 275 68 285 72 292" stroke="var(--gold-light)" stroke-width="6" opacity="0.08" fill="none" filter="url(#softGlow)"/>
+
+          <!-- Fate line (violet) — vertical through center -->
+          <path class="palm-line-anim" d="M112 285 C110 260 108 230 106 200 C104 170 105 145 108 125 C110 112 112 102 115 92" stroke="var(--violet-primary)" stroke-width="1.8" opacity="0.7" fill="none" filter="url(#lineGlow)" stroke-linecap="round" style="animation-delay:0.9s"/>
+          <path d="M112 285 C110 260 108 230 106 200 C104 170 105 145 108 125 C110 112 112 102 115 92" stroke="var(--violet-primary)" stroke-width="6" opacity="0.06" fill="none" filter="url(#softGlow)"/>
+
+          <!-- Sun line — faint, short -->
+          <path d="M138 160 C140 145 141 130 142 118" stroke="var(--gold-primary)" stroke-width="0.8" opacity="0.25" fill="none"/>
+
+          <!-- Mercury line — faint, short -->
+          <path d="M155 200 C158 185 160 168 162 155" stroke="var(--violet-primary)" stroke-width="0.6" opacity="0.18" fill="none"/>
+
+          <!-- Intersection glow points where lines cross -->
+          <circle cx="108" cy="133" r="4" fill="var(--gold-primary)" opacity="0.12" filter="url(#softGlow)"/>
+          <circle cx="82" cy="97" r="3.5" fill="var(--gold-light)" opacity="0.1" filter="url(#softGlow)"/>
         </svg>
+
+        <!-- Dashed connector lines to labels -->
         <svg style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none" viewBox="0 0 380 380">
-          <line x1="210" y1="118" x2="300" y2="85" stroke-dasharray="3 3" stroke="var(--rose-accent)" stroke-width="0.8" opacity="0.4"/>
-          <line x1="205" y1="148" x2="305" y2="165" stroke-dasharray="3 3" stroke="var(--teal-accent)" stroke-width="0.8" opacity="0.4"/>
-          <line x1="165" y1="165" x2="60" y2="200" stroke-dasharray="3 3" stroke="var(--gold-primary)" stroke-width="0.8" opacity="0.4"/>
-          <line x1="190" y1="200" x2="295" y2="255" stroke-dasharray="3 3" stroke="var(--violet-primary)" stroke-width="0.8" opacity="0.4"/>
+          <line x1="220" y1="130" x2="305" y2="90" stroke-dasharray="3 3" stroke="var(--rose-accent)" stroke-width="0.8" opacity="0.35"/>
+          <line x1="220" y1="162" x2="310" y2="175" stroke-dasharray="3 3" stroke="var(--teal-accent)" stroke-width="0.8" opacity="0.35"/>
+          <line x1="145" y1="190" x2="55" y2="220" stroke-dasharray="3 3" stroke="var(--gold-primary)" stroke-width="0.8" opacity="0.35"/>
+          <line x1="200" y1="230" x2="300" y2="270" stroke-dasharray="3 3" stroke="var(--violet-primary)" stroke-width="0.8" opacity="0.35"/>
         </svg>
-        <div class="palm-label" style="top:68px;right:-10px;color:var(--rose-accent)"><span style="color:var(--rose-accent)">Heart Line</span> <span style="color:var(--text-tertiary)">— Emotional intelligence</span></div>
-        <div class="palm-label" style="top:152px;right:-18px;color:var(--teal-accent)"><span style="color:var(--teal-accent)">Head Line</span> <span style="color:var(--text-tertiary)">— Clarity and decisions</span></div>
-        <div class="palm-label" style="top:190px;left:-20px;color:var(--gold-primary)"><span style="color:var(--gold-primary)">Life Line</span> <span style="color:var(--text-tertiary)">— Vitality and resilience</span></div>
-        <div class="palm-label" style="bottom:90px;right:-8px;color:var(--violet-primary)"><span style="color:var(--violet-primary)">Fate Line</span> <span style="color:var(--text-tertiary)">— Purpose and direction</span></div>
+
+        <div class="palm-label" style="top:72px;right:-14px"><span style="color:var(--rose-accent)">Heart Line</span> <span style="color:var(--text-tertiary)">— Emotional intelligence</span></div>
+        <div class="palm-label" style="top:162px;right:-22px"><span style="color:var(--teal-accent)">Head Line</span> <span style="color:var(--text-tertiary)">— Clarity and decisions</span></div>
+        <div class="palm-label" style="top:210px;left:-24px"><span style="color:var(--gold-primary)">Life Line</span> <span style="color:var(--text-tertiary)">— Vitality and resilience</span></div>
+        <div class="palm-label" style="bottom:72px;right:-12px"><span style="color:var(--violet-primary)">Fate Line</span> <span style="color:var(--text-tertiary)">— Purpose and direction</span></div>
       </div>
     </div>
   </div>
@@ -767,11 +900,11 @@ a:focus-visible, button:focus-visible, input:focus-visible {
 <!-- What It Is -->
 <section class="section section-bg-mid">
   <div class="section-inner">
-    <h2 class="section-headline section-headline-center reveal">AstroPalm is not a palm reading app.</h2>
+    <h2 class="section-headline section-headline-center reveal">AstraPalm is not a palm reading app.</h2>
     <p class="what-subtitle reveal">It is a daily insight ritual built around who you are.</p>
     <div class="what-columns">
       <div class="what-left reveal">
-        <p>Your palm lines are not fortune telling. They are a map of how you process emotion, make decisions, build resilience, and move through life. That map does not change. But what it means for you today — given your mood, your patterns, the energy of the moment — that shifts every single day. AstroPalm reads both.</p>
+        <p>Your palm lines are not fortune telling. They are a map of how you process emotion, make decisions, build resilience, and move through life. That map does not change. But what it means for you today — given your mood, your patterns, the energy of the moment — that shifts every single day. AstraPalm reads both.</p>
       </div>
       <div class="what-right">
         <div class="what-feature reveal">
@@ -804,7 +937,7 @@ a:focus-visible, button:focus-visible, input:focus-visible {
       <div class="step-card reveal">
         <div class="step-label">01 — Scan</div>
         <h3 class="step-title">Hold your palm to the camera</h3>
-        <p class="step-body">AstroPalm reads your lines in a guided 8-second scan. The ceremony is part of the ritual. You will see your lines illuminated as they are read.</p>
+        <p class="step-body">AstraPalm reads your lines in a guided 8-second scan. The ceremony is part of the ritual. You will see your lines illuminated as they are read.</p>
       </div>
       <div class="step-connector">
         <svg width="32" height="12" viewBox="0 0 32 12"><path d="M0 6h28M24 1l6 5-6 5" stroke="var(--text-dim)" stroke-width="1" fill="none"/></svg>
@@ -896,7 +1029,7 @@ a:focus-visible, button:focus-visible, input:focus-visible {
         <div class="line-card-numeral">I</div>
         <h3><span class="line-card-color" style="background:var(--rose-accent)"></span>The Heart Line</h3>
         <p class="line-card-sub">How you feel and how you love</p>
-        <p>The deepest horizontal line on your palm speaks to emotional intelligence, attachment patterns, and how you experience connection. AstroPalm tracks how its energy shifts across seasons.</p>
+        <p>The deepest horizontal line on your palm speaks to emotional intelligence, attachment patterns, and how you experience connection. AstraPalm tracks how its energy shifts across seasons.</p>
       </div>
       <div class="line-card reveal">
         <div class="line-card-numeral">II</div>
@@ -914,7 +1047,7 @@ a:focus-visible, button:focus-visible, input:focus-visible {
         <div class="line-card-numeral">IV</div>
         <h3><span class="line-card-color" style="background:var(--violet-primary)"></span>The Fate Line</h3>
         <p class="line-card-sub">Your sense of purpose</p>
-        <p>Not everyone has a strong fate line. If you do, it speaks to the pull you feel toward something larger than daily routine. AstroPalm uses this to calibrate your purpose-related readings.</p>
+        <p>Not everyone has a strong fate line. If you do, it speaks to the pull you feel toward something larger than daily routine. AstraPalm uses this to calibrate your purpose-related readings.</p>
       </div>
     </div>
   </div>
@@ -934,7 +1067,7 @@ a:focus-visible, button:focus-visible, input:focus-visible {
           <svg width="14" height="14" viewBox="0 0 14 14"><polygon points="7,1 8.8,5 13,5.5 9.8,8.3 10.7,13 7,10.8 3.3,13 4.2,8.3 1,5.5 5.2,5" fill="var(--gold-primary)"/></svg>
           <svg width="14" height="14" viewBox="0 0 14 14"><polygon points="7,1 8.8,5 13,5.5 9.8,8.3 10.7,13 7,10.8 3.3,13 4.2,8.3 1,5.5 5.2,5" fill="var(--gold-primary)"/></svg>
         </div>
-        <p class="testimonial-quote">"I have been using AstroPalm for 47 days. The thing that keeps bringing me back is not the scan. It is that it referenced something from three weeks ago that I had almost forgotten, and it was exactly right about how it resolved. That does not feel like an algorithm."</p>
+        <p class="testimonial-quote">"I have been using AstraPalm for 47 days. The thing that keeps bringing me back is not the scan. It is that it referenced something from three weeks ago that I had almost forgotten, and it was exactly right about how it resolved. That does not feel like an algorithm."</p>
         <div class="testimonial-sep"></div>
         <p class="testimonial-attr">Sofia M., 26, Los Angeles</p>
       </div>
@@ -1045,7 +1178,7 @@ a:focus-visible, button:focus-visible, input:focus-visible {
     <div class="faq-list">
       <div class="faq-item reveal">
         <button class="faq-question"><span>Is this actually accurate or is it generic?</span><svg class="faq-icon" viewBox="0 0 20 20"><line x1="10" y1="4" x2="10" y2="16" stroke="currentColor" stroke-width="1.5"/><line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5"/></svg></button>
-        <div class="faq-answer"><div class="faq-answer-inner">This is the right question to ask. Most apps in this category serve the same content to everyone and call it personalized. AstroPalm builds your reading from your specific profile: your age, your goals, your gender identity, your zodiac season, and your behavioral history inside the app. Two people with different profiles will never receive the same reading. That said, we are honest: this is insight and pattern recognition, not prophecy. The accuracy you feel is real. The mechanism behind it is a combination of ancient palmistry frameworks and behavioral personalization. Judge it by how it feels over 30 days.</div></div>
+        <div class="faq-answer"><div class="faq-answer-inner">This is the right question to ask. Most apps in this category serve the same content to everyone and call it personalized. AstraPalm builds your reading from your specific profile: your age, your goals, your gender identity, your zodiac season, and your behavioral history inside the app. Two people with different profiles will never receive the same reading. That said, we are honest: this is insight and pattern recognition, not prophecy. The accuracy you feel is real. The mechanism behind it is a combination of ancient palmistry frameworks and behavioral personalization. Judge it by how it feels over 30 days.</div></div>
       </div>
       <div class="faq-item reveal">
         <button class="faq-question"><span>What does the palm scan actually do?</span><svg class="faq-icon" viewBox="0 0 20 20"><line x1="10" y1="4" x2="10" y2="16" stroke="currentColor" stroke-width="1.5"/><line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5"/></svg></button>
@@ -1057,11 +1190,11 @@ a:focus-visible, button:focus-visible, input:focus-visible {
       </div>
       <div class="faq-item reveal">
         <button class="faq-question"><span>How is this different from Co-Star or The Pattern?</span><svg class="faq-icon" viewBox="0 0 20 20"><line x1="10" y1="4" x2="10" y2="16" stroke="currentColor" stroke-width="1.5"/><line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5"/></svg></button>
-        <div class="faq-answer"><div class="faq-answer-inner">Co-Star and The Pattern are astrology-based personality tools. AstroPalm is a daily practice tool based on palmistry. Astrology reads the sky at the moment of your birth. Palmistry reads the lines on your hand that have formed over your lifetime. These are different systems with different philosophies. AstroPalm also has a different purpose: it is not about knowing yourself better in the abstract. It is about showing up to each day with a specific, personal orientation.</div></div>
+        <div class="faq-answer"><div class="faq-answer-inner">Co-Star and The Pattern are astrology-based personality tools. AstraPalm is a daily practice tool based on palmistry. Astrology reads the sky at the moment of your birth. Palmistry reads the lines on your hand that have formed over your lifetime. These are different systems with different philosophies. AstraPalm also has a different purpose: it is not about knowing yourself better in the abstract. It is about showing up to each day with a specific, personal orientation.</div></div>
       </div>
       <div class="faq-item reveal">
         <button class="faq-question"><span>Do I need to believe in palm reading for it to work?</span><svg class="faq-icon" viewBox="0 0 20 20"><line x1="10" y1="4" x2="10" y2="16" stroke="currentColor" stroke-width="1.5"/><line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5"/></svg></button>
-        <div class="faq-answer"><div class="faq-answer-inner">You do not need to believe in anything. You need to be curious. The people who get the most from AstroPalm are the ones who treat it empirically: they check the reading in the morning and then pay attention to whether it was right. Over time, most of them stop asking whether it is real and start noticing that it keeps being useful.</div></div>
+        <div class="faq-answer"><div class="faq-answer-inner">You do not need to believe in anything. You need to be curious. The people who get the most from AstraPalm are the ones who treat it empirically: they check the reading in the morning and then pay attention to whether it was right. Over time, most of them stop asking whether it is real and start noticing that it keeps being useful.</div></div>
       </div>
       <div class="faq-item reveal">
         <button class="faq-question"><span>What happens if I miss a day?</span><svg class="faq-icon" viewBox="0 0 20 20"><line x1="10" y1="4" x2="10" y2="16" stroke="currentColor" stroke-width="1.5"/><line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5"/></svg></button>
@@ -1073,7 +1206,7 @@ a:focus-visible, button:focus-visible, input:focus-visible {
       </div>
       <div class="faq-item reveal">
         <button class="faq-question"><span>Can I cancel anytime?</span><svg class="faq-icon" viewBox="0 0 20 20"><line x1="10" y1="4" x2="10" y2="16" stroke="currentColor" stroke-width="1.5"/><line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5"/></svg></button>
-        <div class="faq-answer"><div class="faq-answer-inner">Yes. No questions, no friction, no guilt-based cancellation flow. You can cancel directly from your phone's subscription settings or from the Profile screen inside AstroPalm. If life gets busy, you can also pause your subscription for up to two weeks without losing your history or streak.</div></div>
+        <div class="faq-answer"><div class="faq-answer-inner">Yes. No questions, no friction, no guilt-based cancellation flow. You can cancel directly from your phone's subscription settings or from the Profile screen inside AstraPalm. If life gets busy, you can also pause your subscription for up to two weeks without losing your history or streak.</div></div>
       </div>
     </div>
   </div>
@@ -1119,7 +1252,7 @@ a:focus-visible, button:focus-visible, input:focus-visible {
             <path d="M16 20c1 0 2.5-3.5 2.5-8S17 4 16 4"/>
             <path d="M6 8h12M5.5 12h13M6 16h12"/>
           </svg>
-          <span class="nav-wordmark">ASTROPALM</span>
+          <span class="nav-wordmark">ASTRAPALM</span>
         </div>
         <p class="footer-desc">A daily practice for the curious, the self-aware, and the ones who have always felt there was more to know about themselves. Your palm holds the map. We help you read it.</p>
       </div>
@@ -1141,7 +1274,7 @@ a:focus-visible, button:focus-visible, input:focus-visible {
       </div>
     </div>
     <div class="footer-bottom">
-      <span class="footer-copy">&copy; 2025 AstroPalm. All rights reserved.</span>
+      <span class="footer-copy">&copy; 2025 AstraPalm. All rights reserved.</span>
       <span class="footer-disclaimer">Not a medical or diagnostic service. For personal insight and entertainment purposes.</span>
     </div>
   </div>
