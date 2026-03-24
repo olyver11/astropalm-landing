@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — AstraPalm</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Inter:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-primary:    #08070D;
+  --bg-secondary:  #0E0C17;
+  --bg-tertiary:   #151220;
+  --gold-primary:  #C9A84C;
+  --gold-light:    #E8C97A;
+  --gold-dark:     #8B6914;
+  --violet-primary:#8B5CF6;
+  --text-primary:  #E8E0D4;
+  --text-secondary:#A09890;
+  --text-tertiary: #7A7268;
+  --text-dim:      #3D3830;
+  --line:          rgba(201,168,76,0.12);
+  --line-soft:     rgba(255,255,255,0.06);
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+body::before {
+  content:'';
+  position:fixed; inset:0;
+  pointer-events:none; z-index:9999; opacity:0.03;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat:repeat;
+}
+
+a { color: var(--gold-primary); text-decoration:none; transition:color 200ms; }
+a:hover { color: var(--gold-light); }
+a:focus-visible { outline:2px solid var(--gold-primary); outline-offset:3px; }
+
+/* Nav */
+.nav {
+  position:sticky; top:0; z-index:1000;
+  padding:0 40px; height:64px;
+  display:flex; align-items:center; justify-content:space-between;
+  background:rgba(8,7,13,0.92);
+  backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--line-soft);
+}
+.nav-left { display:flex; align-items:center; gap:10px; }
+.nav-wordmark {
+  font-family:'Playfair Display',Georgia,serif;
+  font-weight:700; font-style:italic; font-size:18px;
+  letter-spacing:0.15em; color:var(--gold-primary);
+  text-decoration:none;
+}
+.nav-back {
+  font-size:13px; color:var(--text-tertiary);
+  transition:color 200ms;
+}
+.nav-back:hover { color:var(--text-primary); }
+
+/* Content */
+.policy {
+  max-width:720px;
+  margin:0 auto;
+  padding:80px 40px 120px;
+}
+
+.policy-header {
+  margin-bottom:56px;
+  padding-bottom:32px;
+  border-bottom:1px solid var(--line-soft);
+}
+
+.policy-title {
+  font-family:'Playfair Display',Georgia,serif;
+  font-weight:400; font-style:italic;
+  font-size:40px; color:var(--text-primary);
+  margin-bottom:12px; line-height:1.15;
+}
+
+.policy-updated {
+  font-family:'DM Mono',monospace;
+  font-size:11px; color:var(--text-tertiary);
+  letter-spacing:0.1em;
+}
+
+.policy-intro {
+  font-size:15px; color:var(--text-secondary);
+  margin-bottom:16px;
+}
+
+.policy h2 {
+  font-family:'Playfair Display',Georgia,serif;
+  font-weight:600; font-size:22px;
+  color:var(--text-primary);
+  margin-top:48px; margin-bottom:16px;
+  padding-top:24px;
+  border-top:1px solid var(--line-soft);
+}
+
+.policy h2:first-of-type {
+  border-top:none; padding-top:0;
+}
+
+.policy h3 {
+  font-size:15px; font-weight:600;
+  color:var(--text-primary);
+  margin-top:24px; margin-bottom:8px;
+}
+
+.policy p {
+  font-size:14px; color:var(--text-secondary);
+  margin-bottom:14px; line-height:1.75;
+}
+
+.policy ul {
+  list-style:none;
+  margin-bottom:16px;
+  padding-left:0;
+}
+
+.policy ul li {
+  font-size:14px; color:var(--text-secondary);
+  padding-left:20px; position:relative;
+  margin-bottom:6px; line-height:1.65;
+}
+
+.policy ul li::before {
+  content:'—';
+  position:absolute; left:0;
+  color:var(--text-dim);
+}
+
+.policy .contact-email {
+  color:var(--gold-primary);
+}
+
+/* Footer */
+.footer {
+  border-top:1px solid var(--line-soft);
+  padding:32px 40px;
+  text-align:center;
+}
+.footer-copy {
+  font-size:11px; color:var(--text-tertiary);
+}
+
+@media (max-width:600px) {
+  .nav { padding:0 20px; }
+  .policy { padding:48px 20px 80px; }
+  .policy-title { font-size:30px; }
+  .footer { padding:24px 20px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-left">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold-primary)" stroke-width="1.2">
+      <path d="M12 21c-1.5 0-3-4-3-9s1.5-9 3-9 3 4 3 9-1.5 9-3 9z"/>
+      <path d="M8 20c-1 0-2.5-3.5-2.5-8S7 4 8 4"/>
+      <path d="M16 20c1 0 2.5-3.5 2.5-8S17 4 16 4"/>
+      <path d="M6 8h12M5.5 12h13M6 16h12"/>
+    </svg>
+    <a href="/" class="nav-wordmark">ASTRAPALM</a>
+  </div>
+  <a href="/" class="nav-back">&larr; Back to home</a>
+</nav>
+
+<article class="policy">
+  <header class="policy-header">
+    <h1 class="policy-title">Privacy Policy</h1>
+    <p class="policy-updated">Last Updated: March 24, 2026</p>
+  </header>
+
+  <p class="policy-intro">AstraPalm LLC ("AstraPalm," "we," "our," or "us") respects your privacy. This Privacy Policy explains how we collect, use, disclose, and protect information when you use the AstraPalm iOS application and related in-app services (the "Service").</p>
+
+  <p class="policy-intro">By using the Service, you agree to the practices described in this Privacy Policy.</p>
+
+  <h2>1. Scope</h2>
+  <p>This Privacy Policy applies to the AstraPalm iOS application only at launch. It does not apply to a separate web application, browser dashboard, or cookie-based website experience.</p>
+
+  <h2>2. Information We Collect</h2>
+
+  <h3>A. Information you provide or that is associated with your account</h3>
+  <p>We may collect:</p>
+  <ul>
+    <li>your name</li>
+    <li>your email address, if provided through Sign in with Apple</li>
+    <li>authentication and account identifiers</li>
+    <li>mood selections</li>
+    <li>streak information</li>
+    <li>premium or subscription status</li>
+    <li>referral codes and referral-related account records</li>
+    <li>support requests, feedback, or survey responses you choose to send us</li>
+  </ul>
+
+  <h3>B. Information stored locally on your device</h3>
+  <p>Certain information is stored only on your device using local app storage, including:</p>
+  <ul>
+    <li>birth date</li>
+    <li>gender identity</li>
+    <li>primary focus or self-discovery preferences</li>
+    <li>palm line readings</li>
+    <li>energy scores</li>
+    <li>daily readings</li>
+    <li>chat messages</li>
+    <li>scan history and related locally generated outputs</li>
+  </ul>
+  <p>This locally stored information is not uploaded to our servers as part of the normal operation of the Service.</p>
+
+  <h3>C. Technical, diagnostics, and usage information</h3>
+  <p>We may collect technical and usage information such as:</p>
+  <ul>
+    <li>device type</li>
+    <li>operating system version</li>
+    <li>app version</li>
+    <li>language settings</li>
+    <li>app interactions and feature usage</li>
+    <li>crash reports, diagnostics, and performance information</li>
+    <li>account identifiers associated with analytics or crash records</li>
+  </ul>
+
+  <h3>D. Subscription information</h3>
+  <p>We may receive subscription and entitlement information related to your App Store purchases, such as:</p>
+  <ul>
+    <li>subscription status</li>
+    <li>entitlement status</li>
+    <li>purchase and restore events</li>
+  </ul>
+  <p>Apple processes payment transactions for App Store purchases. We do not receive your full payment card information.</p>
+
+  <h2>3. Palm Image Processing</h2>
+  <p>AstraPalm processes palm images in real time on your device using Apple's Vision framework.</p>
+  <p>Palm images:</p>
+  <ul>
+    <li>are not uploaded to AstraPalm servers</li>
+    <li>are not transmitted to Firebase, RevenueCat, or any other third party</li>
+    <li>are not stored or retained by AstraPalm</li>
+    <li>are not used for identity verification, biometric authentication, fingerprint analysis, or similar identification purposes</li>
+  </ul>
+  <p>AstraPalm stores only the derived outputs of on-device analysis, such as numerical scores, generated interpretations, and other locally generated reading data.</p>
+
+  <h2>4. No Third-Party AI Processing at Launch</h2>
+  <p>At launch, AstraPalm does not send user images, prompts, messages, or outputs to OpenAI, Anthropic, Claude, or any other third-party AI provider.</p>
+  <p>Palm analysis and reading generation are performed on-device or through local deterministic app logic at launch.</p>
+  <p>If we add third-party AI-powered features in the future, we will update this Privacy Policy before those features are launched.</p>
+
+  <h2>5. How We Use Information</h2>
+  <p>We use information to:</p>
+  <ul>
+    <li>create and manage user accounts</li>
+    <li>authenticate users</li>
+    <li>provide app functionality</li>
+    <li>generate palm readings and related self-discovery content</li>
+    <li>maintain streaks, referral functionality, and premium access</li>
+    <li>verify subscription or entitlement status</li>
+    <li>monitor performance, diagnose crashes, and improve app reliability</li>
+    <li>send service-related or account-related notifications</li>
+    <li>comply with legal obligations and enforce our policies</li>
+  </ul>
+
+  <h2>6. How We Share Information</h2>
+  <p>We do not sell your personal information.</p>
+  <p>We may share information with service providers that help us operate the Service, including:</p>
+  <ul>
+    <li>Apple, for Sign in with Apple, App Store subscription processing, and related platform functionality</li>
+    <li>Google/Firebase, for authentication, cloud data storage, analytics, crash reporting, cloud functions, and messaging where applicable</li>
+    <li>RevenueCat, for subscription and entitlement management</li>
+  </ul>
+  <p>We may also disclose information:</p>
+  <ul>
+    <li>when required by law, legal process, or governmental request</li>
+    <li>to protect rights, safety, users, or the public</li>
+    <li>in connection with a merger, financing, acquisition, reorganization, bankruptcy, or sale of assets</li>
+    <li>with your direction or consent</li>
+  </ul>
+
+  <h2>7. Data Retention</h2>
+  <p>We retain different categories of information for different periods, depending on operational need, legal obligations, security, and service functionality.</p>
+  <p>Examples include:</p>
+  <ul>
+    <li>account and Firestore user records: generally until account deletion, subject to limited retained records for operational, legal, fraud-prevention, or security purposes</li>
+    <li>analytics data: according to Firebase/Google retention settings and policies</li>
+    <li>crash data: according to Crashlytics retention settings and policies</li>
+    <li>subscription and entitlement data: according to Apple and RevenueCat retention practices</li>
+    <li>server logs containing identifiers such as user IDs or referral codes: for limited operational retention, including cloud logging retention periods</li>
+  </ul>
+  <p>Locally stored app data on your device may remain on your device until you delete it, reset the app, or uninstall the app.</p>
+
+  <h2>8. Data Security</h2>
+  <p>We use reasonable administrative, technical, and organizational safeguards designed to protect information, including access controls, authentication, secure hosting practices, and encryption in transit where applicable.</p>
+  <p>No method of transmission, storage, or security is perfect, and we cannot guarantee absolute security.</p>
+
+  <h2>9. Human Access</h2>
+  <p>Because palm images are not uploaded or stored by AstraPalm, AstraPalm personnel do not review palm images in the ordinary course of operating the Service.</p>
+  <p>Authorized personnel, contractors, or service providers with appropriate access may be able to view certain cloud-stored account, subscription, analytics, crash, or referral-related data as necessary to operate, secure, maintain, or troubleshoot the Service.</p>
+  <p>Locally stored readings, chat history, and similar on-device content are generally accessible only from the user's device.</p>
+
+  <h2>10. Your Rights and Choices</h2>
+  <p>Depending on your location, you may have rights to request access to, correction of, deletion of, or information about certain personal data.</p>
+  <p>To make a privacy request, contact: <a href="mailto:info@astrapalmai.com" class="contact-email">info@astrapalmai.com</a></p>
+  <p>We may need to verify your identity before processing certain requests.</p>
+
+  <h2>11. Account Deletion</h2>
+  <p>If you delete your account, we may delete your Firebase authentication record and primary account records associated with the Service.</p>
+  <p>Some information may be retained for limited periods as necessary for:</p>
+  <ul>
+    <li>security</li>
+    <li>fraud prevention</li>
+    <li>legal compliance</li>
+    <li>dispute resolution</li>
+    <li>referral tracking</li>
+    <li>billing or subscription support</li>
+    <li>internal operational records</li>
+  </ul>
+  <p>Deleting your account may not automatically remove all locally stored data from your device unless the app provides that functionality or the app is deleted from the device.</p>
+
+  <h2>12. International Processing</h2>
+  <p>AstraPalm and its service providers may process information in the United States and other countries where they operate. Data protection laws in those countries may differ from the laws in your jurisdiction.</p>
+  <p>Where required, we will use appropriate safeguards for cross-border data transfers.</p>
+
+  <h2>13. Children's Privacy</h2>
+  <p>The Service is intended only for users who are at least 18 years old.</p>
+  <p>We do not knowingly collect personal information from anyone under 18. If we learn that a person under 18 has provided personal information, we will take appropriate steps to delete it where required.</p>
+
+  <h2>14. Changes to This Privacy Policy</h2>
+  <p>We may update this Privacy Policy from time to time. If we make material changes, we will post the updated version and revise the "Last Updated" date. We may also provide additional notice where required by law.</p>
+
+  <h2>15. Contact Us</h2>
+  <p>If you have questions or requests regarding this Privacy Policy, contact:</p>
+  <p>AstraPalm LLC<br><a href="mailto:info@astrapalmai.com" class="contact-email">info@astrapalmai.com</a></p>
+</article>
+
+<footer class="footer">
+  <span class="footer-copy">&copy; 2025 AstraPalm. All rights reserved.</span>
+</footer>
+
+</body>
+</html>
