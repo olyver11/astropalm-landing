@@ -619,6 +619,15 @@ a:focus-visible, button:focus-visible, input:focus-visible {
 .waitlist-note {
   font-size:11px; color:var(--text-dim); margin-top:2px;
 }
+.waitlist-consent {
+  display:flex; align-items:flex-start; gap:8px;
+  font-size:11px; color:var(--text-tertiary); line-height:1.5;
+  cursor:pointer;
+}
+.waitlist-consent input[type="checkbox"] {
+  margin-top:2px; accent-color:var(--gold-primary); flex-shrink:0;
+  cursor:pointer;
+}
 .waitlist-confirm {
   font-family:'Playfair Display',Georgia,serif;
   font-style:italic; font-size:18px; color:var(--gold-light);
@@ -740,7 +749,7 @@ a:focus-visible, button:focus-visible, input:focus-visible {
           <input type="tel" class="waitlist-input" name="phone" placeholder="Phone number (optional)" aria-label="Phone number">
         </div>
         <button type="submit" class="waitlist-submit">Join the Waitlist</button>
-        <p class="waitlist-note">No spam. We only text when the app is ready.</p>
+        <label class="waitlist-consent"><input type="checkbox" name="consent" required><span>I agree to receive emails and texts from AstraPalm about the app launch. No spam. Unsubscribe anytime. <a href="/privacy.html" style="color:var(--gold-primary)">Privacy Policy</a></span></label>
       </form>
       <p class="waitlist-confirm" id="hero-confirm">You are on the list. We will reach out soon.</p>
     </div>
@@ -1405,8 +1414,10 @@ a:focus-visible, button:focus-visible, input:focus-visible {
       var email = form.querySelector('input[name="email"]');
       var name = form.querySelector('input[name="name"]');
       var phone = form.querySelector('input[name="phone"]');
+      var consent = form.querySelector('input[name="consent"]');
       if (!name.value.trim()) { name.style.borderColor='var(--rose-accent)'; setTimeout(function(){name.style.borderColor='';},1500); return; }
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) { email.style.borderColor='var(--rose-accent)'; setTimeout(function(){email.style.borderColor='';},1500); return; }
+      if (!consent.checked) { consent.parentElement.style.color='var(--rose-accent)'; setTimeout(function(){consent.parentElement.style.color='';},1500); return; }
       var btn = form.querySelector('.waitlist-submit');
       btn.disabled = true;
       btn.textContent = 'Joining...';
@@ -1414,7 +1425,7 @@ a:focus-visible, button:focus-visible, input:focus-visible {
         method: 'POST',
         mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: name.value.trim(), email: email.value.trim(), phone: phone.value.trim() })
+        body: JSON.stringify({ name: name.value.trim(), email: email.value.trim(), phone: phone.value.trim(), consent: 'yes' })
       }).then(function() {
         form.style.display = 'none';
         confirm.classList.add('show');
